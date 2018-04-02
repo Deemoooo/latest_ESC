@@ -5,10 +5,10 @@ import {Row, Col, Grid, Button, SplitButton, DropdownButton, MenuItem, Image} fr
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardHeader} from 'material-ui';
 
-import quiz from "./quiz.png";
-import perf from "./performance.png";
-import feedback from "./feedback.png";
-import question from "./question.png";
+import quiz from "../images/quiz.png";
+import perf from "../images/performance.png";
+import feedback from "../images/feedback.png";
+import question from "../images/question.png";
 
 
 import * as routes from '../constants/routes';
@@ -36,7 +36,7 @@ const ProfThing = () =>
             <Col sm={2} md={2}>
               <br />
               <br />
-              <Link to="/"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
+              <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
             </Col>
           </Row>
         </Grid>
@@ -70,7 +70,7 @@ const ProfThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/comps/Feedback"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
+                <Link to="/prof/Feedback"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
               </Col>           
             </Col>
             <Col sm={2} md={4}>
@@ -99,7 +99,7 @@ const ProfThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/comps/Analysis"><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
+                <Link to="/prof/Analysis"><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
               </Col>           
             </Col>
             <Col sm={2} md={4}>
@@ -128,7 +128,7 @@ const ProfThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/comps/Quizzes"><Button bsSize="large" bsStyle="success" block>Push Quizzes</Button></Link>
+                <Link to="/prof/Quizzes"><Button bsSize="large" bsStyle="success" block>Push Quizzes</Button></Link>
               </Col>           
             </Col> 
           </Row>
@@ -146,13 +146,14 @@ const StudentThing = () =>
             <Col sm={2} md={2}>
               <br />
               <br />
-              <Link to="/"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
+              <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
             </Col>
           </Row>
           <Grid>
             <Row>
               <SplitButton
                   bsStyle="primary"
+                  title="Select a prof"
                   >
                 <DropdownButton
                     bsStyle="default"
@@ -213,7 +214,7 @@ const StudentThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/comps/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
+                <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
               </Col>           
             </Col>
             <Col sm={2}/>
@@ -243,7 +244,7 @@ const StudentThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/comps/Question"><Button bsSize="large" bsStyle="success" block>Ask Questions</Button></Link>
+                <Link to="/student/Question"><Button bsSize="large" bsStyle="success" block>Ask Questions</Button></Link>
               </Col>           
             </Col>
           </Row>
