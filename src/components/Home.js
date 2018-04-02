@@ -41,7 +41,7 @@ const UserList = ({ users }) =>
   </div>
 
 const authSignin = (authUser) => !!authUser;
-const authStudent = (authUser) => authUser.email === "user2@gmail.com";
-const authProf = (authUser) => authUser.email === "hwnh@gmail.com";
+const authStudent = (authUser) => authUser.displayName === "Student";
+const authProf = (authUser) => authUser.displayName === "Professor";
 
 export default withAuthorization(authSignin)(authStudent)(authProf)(HomePage);

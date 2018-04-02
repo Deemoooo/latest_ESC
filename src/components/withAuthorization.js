@@ -8,6 +8,7 @@ import * as routes from '../constants/routes';
 const withAuthorization = (authSignin) => (authStudent) => (authProf) => (Component) => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
+
       firebase.auth.onAuthStateChanged(authUser => {
         if (!authSignin(authUser)) {
           this.props.history.push(routes.SIGN_IN);

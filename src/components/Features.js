@@ -16,7 +16,7 @@ import SignOutButton from './SignOut';
 
 const Features = (props, { authUser }) =>
   <div>
-    { authUser && authUser.email === "hwnh@gmail.com"
+    { authUser && authUser.displayName === "Professor"
         ? <ProfThing />
         : <StudentThing />
     }

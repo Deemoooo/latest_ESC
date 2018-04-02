@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { RadioGroup, Radio } from 'react-radio-group';
 
 import * as routes from '../constants/routes';
 import { auth, db } from '../firebase';
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  selectedValue: '',
   error: null,
 };
 
@@ -25,13 +27,17 @@ const byPropKey = (propertyName, value) => () => ({
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
-
+    this.handleChange = this.handleChange.bind(this);
     this.state = { ...INITIAL_STATE };
+  }
+
+  handleChange(value){
+    this.setState({selectedValue:value});
   }
 
   onSubmit = (event) => {
   	const {
-      username,
+      selectedValue,
       email,
       passwordOne,
     } = this.state;
@@ -42,12 +48,21 @@ class SignUpForm extends Component {
 
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+        authUser.updateProfile({
+          displayName: this.state.selectedValue,
+          photoURL: "https://example.com/jane-q-user/profile.jpg"
+        }).then(function() {
+  // Update successful.
+        }).catch(function(error) {
+  // An error happened.
+        });
 
         // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.uid, username, email)
+        db.doCreateUser(authUser.uid, email, selectedValue)
           .then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
-            history.push(routes.STUDENT);
+            alert("Signup successfully!");
+            history.push(routes.SIGN_IN);
           })
           .catch(error => {
             this.setState(byPropKey('error', error));
@@ -65,6 +80,7 @@ class SignUpForm extends Component {
   	const {
       username,
       email,
+      selectedValue,
       passwordOne,
       passwordTwo,
       error,
@@ -102,6 +118,10 @@ class SignUpForm extends Component {
           type="password"
           placeholder="Confirm Password"
         />
+        <RadioGroup name="role" selectedValue={this.state.selectedValue} onChange={this.handleChange}>
+            <Radio value="Student" />Student
+            <Radio value="Professor" />Professor
+        </RadioGroup>
         <button disabled={isInvalid} type="submit">
           Sign Up
         </button>
