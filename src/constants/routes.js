@@ -4,5 +4,5 @@ export const LANDING = '/';
 export const HOME = '/home';
 export const ACCOUNT = '/account';
 export const PASSWORD_FORGET = '/pw-forget';
-export const STUDENT = '/student';
-export const PROF = '/prof';
+export const STUDENT = '/feature';
+export const PROF = '/feature';

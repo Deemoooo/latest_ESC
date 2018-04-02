@@ -14,7 +14,7 @@ const withAuthorization = (authSignin) => (authStudent) => (authProf) => (Compon
         }else if (authStudent(authUser)) {
           this.props.history.push(routes.STUDENT);
         }else if (authProf(authUser)) {
-          this.props.history.push(routes.PROF);
+          this.props.history.push(routes.STUDENT);
         }
       });
     }
