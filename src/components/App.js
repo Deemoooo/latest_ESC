@@ -8,6 +8,15 @@ import SignInPage from './SignIn';
 import PasswordForgetPage from './PasswordForget';
 import HomePage from './Home';
 import AccountPage from './Account';
+<<<<<<< HEAD
+import StudentFeedbackPage from './Student/Feedback';
+=======
+import QuestionsProf from './QuestionsProf';
+import QuizProf from './Quizprof';
+import QuizStud from './Quizstud';
+
+import Pushquiz from '../pfunctions/Quizzes';
+>>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
 
 import * as routes from '../constants/routes';
 import withAuthentication from './withAuthentication';
@@ -15,8 +24,17 @@ import withAuthentication from './withAuthentication';
 const App = () =>
   <Router>
     <div>
-
       <hr/>
+<<<<<<< HEAD
+      <Route exact path={routes.LANDING} component={() => <SignInPage />} />
+      <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+      <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+      <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
+      <Route exact path={routes.HOME} component={() => <HomePage />} />
+      <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+      <Route exact path={routes.STUDENT} component={() => <Features />} />
+      <Route exact path={routes.FEEDBACK_STUDENT} component={() => <StudentFeedbackPage />} />
+=======
 
       <Route
         exact path={routes.LANDING}
@@ -46,7 +64,25 @@ const App = () =>
         exact path={routes.STUDENT}
         component={() => <Features />}
       />
+      <Route 
+        exact path={routes.PUSHQUIZ}
+        component={() => <Pushquiz />}
+      />
+      <Route
+        exact path={routes.QUESTIONP}
+        component={() => <QuestionsProf />}
+      />
+      <Route
+        exact path={routes.QUIZP}
+        component={() => <QuizProf />}
+      />
+      <Route
+        exact path={routes.QUIZSTU}
+        component={() => <QuizStud />}
+      />
+>>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
     </div>
   </Router>
+//      <Route exact path={routes.FEEDBACK_PROF} component={() => <Features />} />
 
 export default withAuthentication(App);

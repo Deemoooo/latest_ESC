@@ -5,98 +5,86 @@ import {Row, Col, Grid, Button, SplitButton, DropdownButton, MenuItem, Image} fr
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardHeader} from 'material-ui';
 
+import { db } from '../firebase';
+
 import quiz from "../images/quiz.png";
 import perf from "../images/performance.png";
 import feedback from "../images/feedback.png";
 import question from "../images/question.png";
 
-
 import * as routes from '../constants/routes';
 import SignOutButton from './SignOut';
 
+import QuestionForm from './QuestionsStud';
+
+import Quizprof from './Quizprof';
+
 const Features = (props, { authUser }) =>
-  <div>
-    { authUser && authUser.displayName === "Professor"
-        ? <ProfThing />
+authUser && authUser.displayName === "Professor"
+        ? <ProfThing authUser={authUser}/>
         : <StudentThing />
-    }
-  </div>
+    
 
 Features.contextTypes = {
   authUser: PropTypes.object,
 };
 
-const ProfThing = () =>
+class ProfThing extends React.Component {
+  constructor(authUser) {
+    super(authUser)
+    this.state = {
+      text: "Please select a class"
+    }
+  }
+  render () {
+    return (
       <div>
-        <Grid>
-          <Row className="show-grid">
+        <Grid><Row className="show-grid">
             <Col sm={2} md={10}>
               <h1>Hello Prof</h1>
             </Col>
             <Col sm={2} md={2}>
-              <br />
-              <br />
-              <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
-            </Col>
-          </Row>
-        </Grid>
-        <Grid>
-          <Row className="show-grid">
-            <br />
-            <br />
+              <br /><br />
+              <Link to={routes.SIGN_IN}><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
+            </Col></Row></Grid>
+        <Grid><Row className="show-grid">
+            <br /><br />
             <Col sm={2} md={4}>
-              <MuiThemeProvider>
-                <br />
-                <br />
-                <br /> 
-                <Row>
-                  <Col md={12}>
-                    <Card>
+              <MuiThemeProvider><br /><br /><br />
+                <Row><Col md={12}><Card>
                         <CardHeader
                             title="Review Feedback"
-                            subtitle="Check the feedback from students"
-                        />
-                        <br/>
-                        <Col>
-                          <Col sm={2} />
+                            subtitle="Check the feedback from students"/><br/>
+                        <Col><Col sm={2} />
                           <Image src= {feedback} rounded />
-                        </Col>
-                        <br />
-                        <br />
-                    </Card>
-                  </Col>
-                </Row>
-              </MuiThemeProvider>
-              <br/>
+                        </Col><br /><br />
+                    </Card></Col></Row>
+              </MuiThemeProvider><br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/prof/Feedback"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
+<<<<<<< HEAD
+                <Link to={routes.FEEDBACK_PROF}><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
+              </Col></Col>
+=======
+                <Link to="/QuestionsProf"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
               </Col>           
             </Col>
+>>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
             <Col sm={2} md={4}>
               <MuiThemeProvider>
-                <br />
-                <br />
-                <br />
-                <Row>
+                <br /><br /><br /><Row>
                   <Col md={12}>
                     <Card>
                       <CardHeader
                           title="Performance analysis"
                           subtitle="Analyze student's performance"
-                      />
-                      <br/>
+                      /><br/>
                       <Col>
                         <Col sm={2} />
                         <Image src= {perf} rounded />
-                      </Col>
-                      <br />
-                      <br />
-                    </Card>
-                  </Col>
-                </Row>
-              </MuiThemeProvider>
-              <br/>
+                      </Col><br /><br />
+                    </Card></Col></Row>
+              </MuiThemeProvider><br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
                 <Link to="/prof/Analysis"><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
@@ -104,62 +92,81 @@ const ProfThing = () =>
             </Col>
             <Col sm={2} md={4}>
               <MuiThemeProvider>
-                <br />
-                <br />
-                <br />
+                <br /><br /><br />
                 <Row>
                   <Col md={12}>
                     <Card>
                       <CardHeader
                           title="Push Quizzes"
                           subtitle="Upload a quiz to students"
-                      />
-                      <br/>
+                      /><br />
                       <Col>
                         <Col sm={2} />
                         <Image src= {quiz} rounded />
-                      </Col>
-                      <br />
-                      <br />
+                      </Col><br /><br />
                     </Card>
                   </Col>
                 </Row>
-              </MuiThemeProvider>
-              <br/>
+              </MuiThemeProvider><br />
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/prof/Quizzes"><Button bsSize="large" bsStyle="success" block>Push Quizzes</Button></Link>
+              <Quizprof />
+               
               </Col>           
             </Col> 
           </Row>
         </Grid>
       </div>
+      );
+    }
+    }
+class StudentThing extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: "Please select a class",
+      profs: null,
+    };
+  }
 
+  componentDidMount() {
+    db.onceGetProfs().then(snapshot =>
+      this.setState(() => ({ profs: snapshot.val() }))
+    );
+  }
 
-const StudentThing = () =>
+  find() {
+    const {profs} = this.state.profs;
+    alert(this.state.prof===null);
+    this.setState(() => ({text: "Prof1"}));
+    // {Object.keys(profs).map(key =>
+    //   <div key={key}>{profs[key].email}</div>
+    // )}
+  }
+
+  render () {
+    const {profs} = this.state;
+    return (
       <div>
         <Grid>
           <Row className="show-grid">
             <Col sm={2} md={10}>
               <h1>Hello Student</h1>
             </Col>
-            <Col sm={2} md={2}>
-              <br />
-              <br />
+            <Col sm={2} md={2}><br /><br />
               <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
-            </Col>
-          </Row>
+            </Col></Row>
           <Grid>
             <Row>
               <SplitButton
                   bsStyle="primary"
-                  title="Select a prof"
+                  title={this.state.text}
                   >
                 <DropdownButton
                     bsStyle="default"
                     title="Computer System Engineering"
                     noCaret>
-                  <MenuItem eventKey="Prof1" onClick={() => this.changetext("Prof1")}>Prof1</MenuItem>
+                  <MenuItem eventKey="Prof1" onClick={() => this.find()}>Prof1</MenuItem>
                   <MenuItem eventKey="2">Prof2</MenuItem>
                   <MenuItem eventKey="3">Prof3</MenuItem>
                 </DropdownButton>
@@ -185,9 +192,40 @@ const StudentThing = () =>
         </Grid>
 
         <Grid>
+<<<<<<< HEAD
+          <Row className="show-grid"><br />
+            <Col sm={1} />
+=======
           <Row className="show-grid">
             <br />
-            <Col sm={1} />
+>>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
+            <Col sm={2} md={4}>
+              <MuiThemeProvider><br /><br /><br />
+                <Row>
+                  <Col md={12}>
+                    <Card>
+                      <CardHeader
+                          title="Give Feedback"
+                          subtitle="Send feedback to professor"
+                      /><br />
+                      <Col>
+                        <Col sm={2} />
+                        <Image src= {feedback} rounded />
+                      </Col><br /><br />
+                    </Card>
+                  </Col>
+                </Row>
+              </MuiThemeProvider><br />
+              <Col sm={2} />
+              <Col sm={8} className="Quizimage">
+<<<<<<< HEAD
+                <Link to={routes.FEEDBACK_STUDENT}><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
+=======
+
+                <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
+>>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
+              </Col>           
+            </Col>
             <Col sm={2} md={4}>
               <MuiThemeProvider>
               <br />
@@ -197,8 +235,8 @@ const StudentThing = () =>
                   <Col md={12}>
                     <Card>
                       <CardHeader
-                          title="Give Feedback"
-                          subtitle="Send feedback to professor"
+                          title="Answer Quiz"
+                          subtitle="Solve online quizzes"
                       />
                       <br/>
                       <Col>
@@ -214,47 +252,38 @@ const StudentThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
+
+                <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
               </Col>           
             </Col>
             <Col sm={2}/>
             <Col sm={2} md={4}>
-              <MuiThemeProvider>
-                <br />
-                <br />
-                <br />
+              <MuiThemeProvider><br /><br /><br />
                 <Row>
                   <Col md={12}>
                     <Card>
                       <CardHeader
                           title="Ask Question"
                           subtitle="Let the professor know your question"
-                      />
-                      <br/>
+                      /><br />
                       <Col>
                         <Col sm={3} />
                         <Image src= {question} rounded />
-                      </Col>
-                      <br />
-                      <br />
+                      </Col><br /><br />
                     </Card>
                   </Col>
                 </Row>
-              </MuiThemeProvider>
-              <br/>
+              </MuiThemeProvider><br />
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/student/Question"><Button bsSize="large" bsStyle="success" block>Ask Questions</Button></Link>
+                <QuestionForm />
               </Col>           
             </Col>
           </Row>
         </Grid>  
       </div>
-
-const NavigationNonAuth = () =>
-  <ul>
-    <li><Link to={routes.LANDING}>Landing</Link></li>
-    <li><Link to={routes.SIGN_IN}>Sign In</Link></li>
-  </ul>
+      );
+    }
+    }
 
 export default Features;
