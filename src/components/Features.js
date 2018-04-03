@@ -16,6 +16,7 @@ import * as routes from '../constants/routes';
 import SignOutButton from './SignOut';
 
 import QuestionForm from './QuestionsStud';
+import StudentFeedbackForm from './Student/Feedback';
 
 import Quizprof from './Quizprof';
 
@@ -143,14 +144,13 @@ class StudentThing extends React.Component {
       <div>
         <Grid>
           <Row className="show-grid">
-            <Col sm={2} md={10}>
-              <h1>Hello Student</h1>
-            </Col>
+            <Col sm={2} md={10}><h1>Hello Student</h1></Col>
+
             <Col sm={2} md={2}><br /><br />
               <Link to={routes.SIGN_IN}><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
-            </Col></Row>
-          <Grid>
-            <Row>
+            </Col>
+          </Row>
+          <Grid><Row>
               <SplitButton
                   bsStyle="primary"
                   title={this.state.text}
@@ -180,85 +180,55 @@ class StudentThing extends React.Component {
                   <MenuItem eventKey="3">Prof9</MenuItem>
                 </DropdownButton>
               </SplitButton>
-            </Row>
-          </Grid>
-        </Grid>
+            </Row></Grid></Grid>
 
-        <Grid>
-          <Row className="show-grid"><br />
-            <Col sm={1} />
-          <Row className="show-grid">
-            <br />
-            <Col sm={2} md={4}>
-              <MuiThemeProvider><br /><br /><br />
-                <Row>
-                  <Col md={12}>
-                    <Card>
-                      <CardHeader
-                          title="Give Feedback"
-                          subtitle="Send feedback to professor"
-                      /><br />
-                      <Col>
-                        <Col sm={2} />
-                        <Image src= {feedback} rounded />
-                      </Col><br /><br />
-                    </Card>
-                  </Col>
-                </Row>
-              </MuiThemeProvider><br />
-              <Col sm={2} />
-              <Col sm={8} className="Quizimage">
-                <Link to={routes.FEEDBACK_STUDENT}><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
-              </Col></Col>
-            <Col sm={2} md={4}>
-              <MuiThemeProvider><br /><br /><br />
-                <Row>
-                  <Col md={12}>
-                    <Card>
-                      <CardHeader
-                          title="Answer Quiz"
-                          subtitle="Solve online quizzes"
-                      />
-                      <br/>
-                      <Col>
-                        <Col sm={2} />
-                        <Image src= {feedback} rounded />
-                      </Col><br /><br />
-                    </Card>
-                  </Col>
-                </Row>
-              </MuiThemeProvider>
-              <br/>
-              <Col sm={2} />
-              <Col sm={8} className="Quizimage">
+        <Grid><Row className="show-grid"><br />
+          <Col sm={1} /><Row className="show-grid"><br />
+          <Col sm={2} md={4}>
+          <MuiThemeProvider><br /><br />
+                  <Row><Col md={12}><Card><CardHeader
+                    title="Give Feedback"
+                    subtitle="Send feedback to professor" /><br />
+                    <Col><Col sm={2} />
+                      <Image src= {feedback} rounded />
+                    </Col><br /><br /></Card></Col></Row>
+          </MuiThemeProvider><br />
 
-                <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
-              </Col>           
-            </Col>
-            <Col sm={2}/>
-            <Col sm={2} md={4}>
-              <MuiThemeProvider><br /><br /><br />
-                <Row>
-                  <Col md={12}>
-                    <Card>
-                      <CardHeader
-                          title="Ask Question"
-                          subtitle="Let the professor know your question"
-                      /><br />
-                      <Col>
-                        <Col sm={3} />
+          <Col sm={2} />
+          <Col sm={8} className="Quizimage">
+          <StudentFeedbackForm />
+          </Col></Col>
+          <Col sm={2} md={4}>
+          <MuiThemeProvider><br /><br />
+                  <Row><Col md={12}>
+                  <Card><CardHeader
+                    title="Answer Quiz"
+                    subtitle="Solve online quizzes"/><br/>
+                  <Col><Col sm={2} />
+                    <Image src= {feedback} rounded />
+                  </Col><br /><br /></Card></Col></Row>
+          </MuiThemeProvider><br/>
+          <Col sm={2} /><Col sm={8} className="Quizimage">
+            <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
+          </Col></Col>
+          <Col sm={2}/><Col sm={2} md={4}>
+          <MuiThemeProvider><br /><br />
+            <Row><Col md={12}>
+              <Card><CardHeader
+                      title="Ask Question"
+                      subtitle="Let the professor know your question" /><br />
+                      <Col><Col sm={3} />
                         <Image src= {question} rounded />
                       </Col><br /><br />
-                    </Card>
-                  </Col>
-                </Row>
-              </MuiThemeProvider><br />
-              <Col sm={2} />
-              <Col sm={8} className="Quizimage">
-                <QuestionForm />
-              </Col></Col>
+              </Card>
+            </Col></Row>
+          </MuiThemeProvider><br />
+          <Col sm={2} />
+          <Col sm={8} className="Quizimage">
+          <QuestionForm />
+          </Col></Col>
           </Row></Row>
-        </Grid>  
+        </Grid><br/>
       </div>
       );
     }

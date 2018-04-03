@@ -10,7 +10,7 @@ export const PROF = '/feature';
 export const FEEDBACK_STUDENT = '/student/feedback';
 export const FEEDBACK_PROF = '/professor/feedback';
 
-export const PUSHQUIZ = '/prof/Quizzes';
+export const PUSHQUIZ = '/professor/Quizzes';
 export const QUESTIONP = '/QuestionsProf';
 export const QUIZP = '/QuizProf';
 export const QUIZSTU = '/QuizStud';
