@@ -62,14 +62,8 @@ class ProfThing extends React.Component {
               </MuiThemeProvider><br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-<<<<<<< HEAD
                 <Link to={routes.FEEDBACK_PROF}><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
               </Col></Col>
-=======
-                <Link to="/QuestionsProf"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
-              </Col>           
-            </Col>
->>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
             <Col sm={2} md={4}>
               <MuiThemeProvider>
                 <br /><br /><br /><Row>
@@ -128,7 +122,6 @@ class StudentThing extends React.Component {
       profs: null,
     };
   }
-
   componentDidMount() {
     db.onceGetProfs().then(snapshot =>
       this.setState(() => ({ profs: snapshot.val() }))
@@ -144,6 +137,20 @@ class StudentThing extends React.Component {
     // )}
   }
 
+  componentDidMount() {
+    db.onceGetProfs().then(snapshot =>
+      this.setState(() => ({ profs: snapshot.val() }))
+    );
+  }
+
+  find() {
+    const {profs} = this.state.profs;
+    alert(this.state.prof===null);
+    this.setState(() => ({text: "Prof1"}));
+    // {Object.keys(profs).map(key =>
+    //   <div key={key}>{profs[key].email}</div>
+    // )}
+  }
   render () {
     const {profs} = this.state;
     return (
@@ -154,7 +161,7 @@ class StudentThing extends React.Component {
               <h1>Hello Student</h1>
             </Col>
             <Col sm={2} md={2}><br /><br />
-              <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
+              <Link to={routes.SIGN_IN}><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
             </Col></Row>
           <Grid>
             <Row>
@@ -192,13 +199,10 @@ class StudentThing extends React.Component {
         </Grid>
 
         <Grid>
-<<<<<<< HEAD
           <Row className="show-grid"><br />
             <Col sm={1} />
-=======
           <Row className="show-grid">
             <br />
->>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
             <Col sm={2} md={4}>
               <MuiThemeProvider><br /><br /><br />
                 <Row>
@@ -218,12 +222,9 @@ class StudentThing extends React.Component {
               </MuiThemeProvider><br />
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-<<<<<<< HEAD
                 <Link to={routes.FEEDBACK_STUDENT}><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
-=======
 
                 <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
->>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
               </Col>           
             </Col>
             <Col sm={2} md={4}>
@@ -245,6 +246,35 @@ class StudentThing extends React.Component {
                       </Col>
                       <br />
                       <br />
+                    </Card>
+                  </Col>
+                </Row>
+              </MuiThemeProvider>
+              <br/>
+              <Col sm={2} />
+              <Col sm={8} className="Quizimage">
+
+                <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
+                <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
+              </Col>           
+            </Col>
+            <Col sm={2} md={4}>
+              <MuiThemeProvider>
+              <br />
+              <br />
+              <br />
+                <Row>
+                  <Col md={12}>
+                    <Card>
+                      <CardHeader
+                          title="Answer Quiz"
+                          subtitle="Solve online quizzes"
+                      />
+                      <br/>
+                      <Col>
+                        <Col sm={2} />
+                        <Image src= {feedback} rounded />
+                      </Col><br /><br />
                     </Card>
                   </Col>
                 </Row>
@@ -277,13 +307,12 @@ class StudentThing extends React.Component {
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
                 <QuestionForm />
-              </Col>           
-            </Col>
-          </Row>
+              </Col></Col>
+          </Row></Row>
         </Grid>  
       </div>
       );
     }
-    }
+}
 
 export default Features;

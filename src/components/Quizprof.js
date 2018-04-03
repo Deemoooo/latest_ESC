@@ -11,7 +11,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { db } from '../firebase/firebase';
 
-
 export default class QuizForm extends React.Component {
   state = {
     open: false,

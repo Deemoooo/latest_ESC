@@ -20,15 +20,13 @@ export const doCreateUser = (id, email, role, student, prof) =>{
 export const onceGetUsers = () =>
   db.ref('users').once('value');
 
-<<<<<<< HEAD
-export const submitFeedback = (pace) =>
-  db.ref('Course').set({
-	pace,
-  });
-=======
 export const onceGetProfs = () =>
   db.ref('profs').once('value');
 
 export const onceGetStudents = () =>
   db.ref('students').once('value');
->>>>>>> 26b61cd8565f6ac7919b053406ffbd9d54265e63
+
+export const submitFeedback = (pace) =>
+  db.ref('Course').set({
+	pace,
+  });
