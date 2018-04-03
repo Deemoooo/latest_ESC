@@ -130,27 +130,13 @@ class StudentThing extends React.Component {
 
   find() {
     const {profs} = this.state.profs;
-    alert(this.state.prof===null);
+    alert(this.state.prof === null);
     this.setState(() => ({text: "Prof1"}));
     // {Object.keys(profs).map(key =>
     //   <div key={key}>{profs[key].email}</div>
     // )}
   }
 
-  componentDidMount() {
-    db.onceGetProfs().then(snapshot =>
-      this.setState(() => ({ profs: snapshot.val() }))
-    );
-  }
-
-  find() {
-    const {profs} = this.state.profs;
-    alert(this.state.prof===null);
-    this.setState(() => ({text: "Prof1"}));
-    // {Object.keys(profs).map(key =>
-    //   <div key={key}>{profs[key].email}</div>
-    // )}
-  }
   render () {
     const {profs} = this.state;
     return (
@@ -223,46 +209,9 @@ class StudentThing extends React.Component {
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
                 <Link to={routes.FEEDBACK_STUDENT}><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
-
-                <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
-              </Col>           
-            </Col>
+              </Col></Col>
             <Col sm={2} md={4}>
-              <MuiThemeProvider>
-              <br />
-              <br />
-              <br />
-                <Row>
-                  <Col md={12}>
-                    <Card>
-                      <CardHeader
-                          title="Answer Quiz"
-                          subtitle="Solve online quizzes"
-                      />
-                      <br/>
-                      <Col>
-                        <Col sm={2} />
-                        <Image src= {feedback} rounded />
-                      </Col>
-                      <br />
-                      <br />
-                    </Card>
-                  </Col>
-                </Row>
-              </MuiThemeProvider>
-              <br/>
-              <Col sm={2} />
-              <Col sm={8} className="Quizimage">
-
-                <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
-                <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
-              </Col>           
-            </Col>
-            <Col sm={2} md={4}>
-              <MuiThemeProvider>
-              <br />
-              <br />
-              <br />
+              <MuiThemeProvider><br /><br /><br />
                 <Row>
                   <Col md={12}>
                     <Card>

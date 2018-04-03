@@ -59,10 +59,6 @@ class SignInForm extends Component {
       error,
     } = this.state;
 
-    const isInvalid =
-      password === '' ||
-      email === '';
-
     return (
       <form onSubmit={this.onSubmit}>
         

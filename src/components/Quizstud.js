@@ -4,7 +4,8 @@ import * as routes from '../constants/routes';
 import { db } from '../firebase/firebase';
 
 import {List, ListItem} from 'material-ui/List';
-import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader} from 'material-ui/Card';
+//CardTitle, CardText
 import {TextField} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -36,13 +37,14 @@ class QuizsStud extends React.Component {
     const {
       history,
     } = this.props;
+    // eslint-disable-next-line
     var childData;
     leadsRef.on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           childData = childSnapshot.val();
         });      
     });
-    if (ans==this.state.choice) {
+    if (ans===this.state.choice) {
       alert("You are correct!")
     }else {
       alert("Try harder")
@@ -54,7 +56,7 @@ class QuizsStud extends React.Component {
 
   render() {
     leadsRef.on('value', function(snapshot) {
-      if(snapshot.numChildren()!=count){
+      if(snapshot.numChildren()!==count){
         count = count + 1;
         alert("You have received new quizzes from your professor!");
         lists=[];
@@ -97,7 +99,7 @@ class QuizsStud extends React.Component {
       type="username"
       margin="normal"
       hintText="Enter your solution here"
-      onChange={event => this.setState({choice: event.target.value, score: event.target.value==ans})}
+      onChange={event => this.setState({choice: event.target.value, score: event.target.value===ans})}
     >
     </TextField>
     <Button onClick={this.checkans}>Submit</Button>

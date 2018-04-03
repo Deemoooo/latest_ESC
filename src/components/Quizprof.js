@@ -2,7 +2,7 @@ import React from 'react';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -20,7 +20,6 @@ export default class QuizForm extends React.Component {
     op2: '',
     op3: '',
     op4: '',
-    qn: '',
   };
 
   handleOpen = () => {
