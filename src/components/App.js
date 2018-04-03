@@ -9,6 +9,8 @@ import PasswordForgetPage from './PasswordForget';
 import HomePage from './Home';
 import AccountPage from './Account';
 import QuestionsProf from './QuestionsProf';
+import QuizProf from './Quizprof';
+import QuizStud from './Quizstud';
 
 import Pushquiz from '../pfunctions/Quizzes';
 
@@ -56,6 +58,14 @@ const App = () =>
       <Route
         exact path={routes.QUESTIONP}
         component={() => <QuestionsProf />}
+      />
+      <Route
+        exact path={routes.QUIZP}
+        component={() => <QuizProf />}
+      />
+      <Route
+        exact path={routes.QUIZSTU}
+        component={() => <QuizStud />}
       />
     </div>
   </Router>

@@ -17,6 +17,8 @@ import SignOutButton from './SignOut';
 
 import QuestionForm from './QuestionsStud';
 
+import Quizprof from './Quizprof';
+
 const Features = (props, { authUser }) =>
 authUser && authUser.displayName === "Professor"
         ? <ProfThing authUser={authUser}/>
@@ -137,7 +139,8 @@ class ProfThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/prof/Quizzes"><Button bsSize="large" bsStyle="success" block>Push Quizzes</Button></Link>
+              <Quizprof />
+               
               </Col>           
             </Col> 
           </Row>
@@ -223,7 +226,6 @@ class StudentThing extends React.Component {
         <Grid>
           <Row className="show-grid">
             <br />
-            <Col sm={1} />
             <Col sm={2} md={4}>
               <MuiThemeProvider>
               <br />
@@ -252,6 +254,36 @@ class StudentThing extends React.Component {
               <Col sm={8} className="Quizimage">
 
                 <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
+              </Col>           
+            </Col>
+            <Col sm={2} md={4}>
+              <MuiThemeProvider>
+              <br />
+              <br />
+              <br />
+                <Row>
+                  <Col md={12}>
+                    <Card>
+                      <CardHeader
+                          title="Answer Quiz"
+                          subtitle="Solve online quizzes"
+                      />
+                      <br/>
+                      <Col>
+                        <Col sm={2} />
+                        <Image src= {feedback} rounded />
+                      </Col>
+                      <br />
+                      <br />
+                    </Card>
+                  </Col>
+                </Row>
+              </MuiThemeProvider>
+              <br/>
+              <Col sm={2} />
+              <Col sm={8} className="Quizimage">
+
+                <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
               </Col>           
             </Col>
             <Col sm={2}/>

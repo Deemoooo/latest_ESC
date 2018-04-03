@@ -8,3 +8,5 @@ export const STUDENT = '/feature';
 export const PROF = '/feature';
 export const PUSHQUIZ = '/prof/Quizzes';
 export const QUESTIONP = '/QuestionsProf';
+export const QUIZP = '/QuizProf';
+export const QUIZSTU = '/QuizStud';
