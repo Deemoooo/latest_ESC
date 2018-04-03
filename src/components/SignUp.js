@@ -17,6 +17,8 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   selectedValue: '',
+  student: '',
+  prof: '',
   error: null,
 };
 
@@ -40,6 +42,8 @@ class SignUpForm extends Component {
       selectedValue,
       email,
       passwordOne,
+      student,
+      prof,
     } = this.state;
 
     const {
@@ -50,7 +54,6 @@ class SignUpForm extends Component {
       .then(authUser => {
         authUser.updateProfile({
           displayName: this.state.selectedValue,
-          photoURL: "https://example.com/jane-q-user/profile.jpg"
         }).then(function() {
   // Update successful.
         }).catch(function(error) {
@@ -58,10 +61,10 @@ class SignUpForm extends Component {
         });
 
         // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.uid, email, selectedValue)
+        db.doCreateUser(authUser.uid, email, selectedValue, student, prof)
           .then(() => {
+            alert("sign up succesfully!");
             this.setState(() => ({ ...INITIAL_STATE }));
-            alert("Signup successfully!");
             history.push(routes.SIGN_IN);
           })
           .catch(error => {
@@ -70,6 +73,7 @@ class SignUpForm extends Component {
 
       })
       .catch(error => {
+        history.push(routes.SIGN_IN);
         this.setState(byPropKey('error', error));
       });
 

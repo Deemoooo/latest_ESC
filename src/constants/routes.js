@@ -6,3 +6,5 @@ export const ACCOUNT = '/account';
 export const PASSWORD_FORGET = '/pw-forget';
 export const STUDENT = '/feature';
 export const PROF = '/feature';
+export const PUSHQUIZ = '/prof/Quizzes';
+export const QUESTIONP = '/QuestionsProf';

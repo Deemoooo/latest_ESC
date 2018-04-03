@@ -5,28 +5,37 @@ import {Row, Col, Grid, Button, SplitButton, DropdownButton, MenuItem, Image} fr
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardHeader} from 'material-ui';
 
+import { db } from '../firebase';
+
 import quiz from "../images/quiz.png";
 import perf from "../images/performance.png";
 import feedback from "../images/feedback.png";
 import question from "../images/question.png";
 
-
 import * as routes from '../constants/routes';
 import SignOutButton from './SignOut';
 
+import QuestionForm from './QuestionsStud';
+
 const Features = (props, { authUser }) =>
-  <div>
-    { authUser && authUser.displayName === "Professor"
-        ? <ProfThing />
+authUser && authUser.displayName === "Professor"
+        ? <ProfThing authUser={authUser}/>
         : <StudentThing />
-    }
-  </div>
+    
 
 Features.contextTypes = {
   authUser: PropTypes.object,
 };
 
-const ProfThing = () =>
+class ProfThing extends React.Component {
+  constructor(authUser) {
+    super(authUser)
+    this.state = {
+      text: "Please select a class"
+    }
+  }
+  render () {
+    return (
       <div>
         <Grid>
           <Row className="show-grid">
@@ -70,7 +79,7 @@ const ProfThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/prof/Feedback"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
+                <Link to="/QuestionsProf"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
               </Col>           
             </Col>
             <Col sm={2} md={4}>
@@ -134,9 +143,36 @@ const ProfThing = () =>
           </Row>
         </Grid>
       </div>
+      );
+    }
+    }
+class StudentThing extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: "Please select a class",
+      profs: null,
+    };
+  }
 
+  componentDidMount() {
+    db.onceGetProfs().then(snapshot =>
+      this.setState(() => ({ profs: snapshot.val() }))
+    );
+  }
 
-const StudentThing = () =>
+  find() {
+    const {profs} = this.state.profs;
+    alert(this.state.prof===null);
+    this.setState(() => ({text: "Prof1"}));
+    // {Object.keys(profs).map(key =>
+    //   <div key={key}>{profs[key].email}</div>
+    // )}
+  }
+
+  render () {
+    const {profs} = this.state;
+    return (
       <div>
         <Grid>
           <Row className="show-grid">
@@ -153,13 +189,13 @@ const StudentThing = () =>
             <Row>
               <SplitButton
                   bsStyle="primary"
-                  title="Select a prof"
+                  title={this.state.text}
                   >
                 <DropdownButton
                     bsStyle="default"
                     title="Computer System Engineering"
                     noCaret>
-                  <MenuItem eventKey="Prof1" onClick={() => this.changetext("Prof1")}>Prof1</MenuItem>
+                  <MenuItem eventKey="Prof1" onClick={() => this.find()}>Prof1</MenuItem>
                   <MenuItem eventKey="2">Prof2</MenuItem>
                   <MenuItem eventKey="3">Prof3</MenuItem>
                 </DropdownButton>
@@ -214,6 +250,7 @@ const StudentThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
+
                 <Link to="/student/stuFeedback"><Button bsSize="large" bsStyle="success" block>Give Feedback</Button></Link>
               </Col>           
             </Col>
@@ -244,17 +281,14 @@ const StudentThing = () =>
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/student/Question"><Button bsSize="large" bsStyle="success" block>Ask Questions</Button></Link>
+                <QuestionForm />
               </Col>           
             </Col>
           </Row>
         </Grid>  
       </div>
-
-const NavigationNonAuth = () =>
-  <ul>
-    <li><Link to={routes.LANDING}>Landing</Link></li>
-    <li><Link to={routes.SIGN_IN}>Sign In</Link></li>
-  </ul>
+      );
+    }
+    }
 
 export default Features;
