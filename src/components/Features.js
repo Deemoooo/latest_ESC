@@ -17,6 +17,7 @@ import SignOutButton from './SignOut';
 
 import QuestionForm from './QuestionsStud';
 import StudentFeedbackForm from './Student/Feedback';
+import ProfFeedbackPage from './Prof/Feedback';
 
 import Quizprof from './Quizprof';
 
@@ -51,7 +52,7 @@ class ProfThing extends React.Component {
         <Grid><Row className="show-grid">
             <br /><br />
             <Col sm={2} md={4}>
-              <MuiThemeProvider><br /><br /><br />
+              <MuiThemeProvider><br /><br />
                 <Row><Col md={12}><Card>
                         <CardHeader
                             title="Review Feedback"
@@ -63,11 +64,12 @@ class ProfThing extends React.Component {
               </MuiThemeProvider><br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to={routes.FEEDBACK_PROF}><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
+                <Link to={routes.FEEDBACK_PROF}><Button bsSize="large" bsStyle="success"block>Review Feedback</Button>
+</Link>
               </Col></Col>
             <Col sm={2} md={4}>
               <MuiThemeProvider>
-                <br /><br /><br /><Row>
+                <br /><br /><Row>
                   <Col md={12}>
                     <Card>
                       <CardHeader
@@ -87,7 +89,7 @@ class ProfThing extends React.Component {
             </Col>
             <Col sm={2} md={4}>
               <MuiThemeProvider>
-                <br /><br /><br />
+                <br /><br />
                 <Row>
                   <Col md={12}>
                     <Card>
@@ -125,14 +127,14 @@ class StudentThing extends React.Component {
   }
   componentDidMount() {
     db.onceGetProfs().then(snapshot =>
-      this.setState(() => ({ profs: snapshot.val() }))
+      this.state = { profs: snapshot.val() }
     );
   }
 
   find() {
     const {profs} = this.state.profs;
     alert(this.state.prof === null);
-    this.setState(() => ({text: "Prof1"}));
+    this.State(() => ({text: "Prof1"}));
     // {Object.keys(profs).map(key =>
     //   <div key={key}>{profs[key].email}</div>
     // )}
@@ -152,10 +154,12 @@ class StudentThing extends React.Component {
           </Row>
           <Grid><Row>
               <SplitButton
+                  id="splitButtonMenu"
                   bsStyle="primary"
                   title={this.state.text}
                   >
                 <DropdownButton
+                    id="CSE"
                     bsStyle="default"
                     title="Computer System Engineering"
                     noCaret>
@@ -164,6 +168,7 @@ class StudentThing extends React.Component {
                   <MenuItem eventKey="3">Prof3</MenuItem>
                 </DropdownButton>
                 <DropdownButton
+                    id="PNS"
                     bsStyle="default"
                     title="Probability and Statistics"
                     noCaret>
@@ -172,6 +177,7 @@ class StudentThing extends React.Component {
                   <MenuItem eventKey="3">Prof6</MenuItem>
                 </DropdownButton>
                 <DropdownButton
+                    id="ESC"
                     bsStyle="default"
                     title="Elements of Software Construction"
                     noCaret>
@@ -185,13 +191,15 @@ class StudentThing extends React.Component {
         <Grid><Row className="show-grid"><br />
           <Col sm={1} /><Row className="show-grid"><br />
           <Col sm={2} md={4}>
-          <MuiThemeProvider><br /><br />
+          <MuiThemeProvider>
+          <div><br /><br />
                   <Row><Col md={12}><Card><CardHeader
                     title="Give Feedback"
                     subtitle="Send feedback to professor" /><br />
                     <Col><Col sm={2} />
                       <Image src= {feedback} rounded />
                     </Col><br /><br /></Card></Col></Row>
+                    </div>
           </MuiThemeProvider><br />
 
           <Col sm={2} />
@@ -199,20 +207,21 @@ class StudentThing extends React.Component {
           <StudentFeedbackForm />
           </Col></Col>
           <Col sm={2} md={4}>
-          <MuiThemeProvider><br /><br />
+          <MuiThemeProvider>
+          <div><br /><br />
                   <Row><Col md={12}>
                   <Card><CardHeader
                     title="Answer Quiz"
                     subtitle="Solve online quizzes"/><br/>
                   <Col><Col sm={2} />
                     <Image src= {feedback} rounded />
-                  </Col><br /><br /></Card></Col></Row>
+                  </Col><br /><br /></Card></Col></Row></div>
           </MuiThemeProvider><br/>
           <Col sm={2} /><Col sm={8} className="Quizimage">
             <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
           </Col></Col>
           <Col sm={2}/><Col sm={2} md={4}>
-          <MuiThemeProvider><br /><br />
+          <MuiThemeProvider><div><br /><br />
             <Row><Col md={12}>
               <Card><CardHeader
                       title="Ask Question"
@@ -221,7 +230,7 @@ class StudentThing extends React.Component {
                         <Image src= {question} rounded />
                       </Col><br /><br />
               </Card>
-            </Col></Row>
+            </Col></Row></div>
           </MuiThemeProvider><br />
           <Col sm={2} />
           <Col sm={8} className="Quizimage">

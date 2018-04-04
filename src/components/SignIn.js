@@ -60,20 +60,21 @@ class SignInForm extends Component {
     } = this.state;
 
     return (
+        <div>
+
       <form onSubmit={this.onSubmit}>
         
-        <div>
       <Grid>
           <Row className="show-grid">
             <br />
             <br />
             <Col sm={2} md={4}>
-              <MuiThemeProvider>
+              <MuiThemeProvider><div>
                 <br />
                 <br />
                 <br /> 
                 <Row>
-                </Row>
+                </Row></div>
               </MuiThemeProvider>
               <br/>
               <Col sm={2} />
@@ -81,7 +82,7 @@ class SignInForm extends Component {
               </Col>           
             </Col>
             <Col sm={2} md={4}>
-              <MuiThemeProvider>
+              <MuiThemeProvider><div>
                 <br />
                 <br />
                 <br />
@@ -126,7 +127,7 @@ class SignInForm extends Component {
                       <br />
                     </Card>
                   </Col>
-                </Row>
+                </Row></div>
               </MuiThemeProvider>
               <br/>
               <Col sm={2} />
@@ -136,7 +137,7 @@ class SignInForm extends Component {
                                  </Col>           
             </Col>
             <Col sm={2} md={4}>
-              <MuiThemeProvider>
+              <MuiThemeProvider><div>
                 <br />
                 <br />
                 <br />
@@ -144,7 +145,7 @@ class SignInForm extends Component {
                   <Col md={12}>
                    
                   </Col>
-                </Row>
+                </Row></div>
               </MuiThemeProvider>
               <br/>
               <Col sm={2} />
@@ -154,11 +155,9 @@ class SignInForm extends Component {
           </Row>
         </Grid>
         { error && <p>{error.message}</p> }
-       
-        </div>
-
         
       </form>
+      </div>
     );
   }
 }

@@ -20,14 +20,14 @@ export default class QuestionForm extends React.Component {
   };
 
   handleOpen = () => {
-    this.setState({open: true});
+    this.state = {open: true};
   };
   handleClose = () => {
-    this.setState({open: false});
+    this.state = {open: false};
   };
   handleChange = (event, index, value) => this.setState({value});
   handleSubmit = () =>{
-    this.setState({open: false});
+    this.state ={open: false};
     const{
       value,
       msg,
@@ -52,7 +52,7 @@ export default class QuestionForm extends React.Component {
 
     return (
       <div>
-      <MuiThemeProvider>
+      <MuiThemeProvider><div>
         <Button bsSize="large" bsStyle="success" onClick={this.handleOpen} block>Ask Questions</Button>
         <Dialog
           title="Ask Questions"
@@ -83,7 +83,7 @@ export default class QuestionForm extends React.Component {
           <MenuItem value={5} primaryText="5" />
         </SelectField>
         <br />
-        </Dialog>
+        </Dialog></div>
         </MuiThemeProvider>
       </div>
     );
