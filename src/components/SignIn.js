@@ -59,22 +59,25 @@ class SignInForm extends Component {
       error,
     } = this.state;
 
-    return (
-        <div>
+    const isInvalid =
+      password === '' ||
+      email === '';
 
+    return (
       <form onSubmit={this.onSubmit}>
         
+        <div>
       <Grid>
           <Row className="show-grid">
             <br />
             <br />
             <Col sm={2} md={4}>
-              <MuiThemeProvider><div>
+              <MuiThemeProvider>
                 <br />
                 <br />
                 <br /> 
                 <Row>
-                </Row></div>
+                </Row>
               </MuiThemeProvider>
               <br/>
               <Col sm={2} />
@@ -82,7 +85,7 @@ class SignInForm extends Component {
               </Col>           
             </Col>
             <Col sm={2} md={4}>
-              <MuiThemeProvider><div>
+              <MuiThemeProvider>
                 <br />
                 <br />
                 <br />
@@ -127,7 +130,7 @@ class SignInForm extends Component {
                       <br />
                     </Card>
                   </Col>
-                </Row></div>
+                </Row>
               </MuiThemeProvider>
               <br/>
               <Col sm={2} />
@@ -137,7 +140,7 @@ class SignInForm extends Component {
                                  </Col>           
             </Col>
             <Col sm={2} md={4}>
-              <MuiThemeProvider><div>
+              <MuiThemeProvider>
                 <br />
                 <br />
                 <br />
@@ -145,7 +148,7 @@ class SignInForm extends Component {
                   <Col md={12}>
                    
                   </Col>
-                </Row></div>
+                </Row>
               </MuiThemeProvider>
               <br/>
               <Col sm={2} />
@@ -155,9 +158,11 @@ class SignInForm extends Component {
           </Row>
         </Grid>
         { error && <p>{error.message}</p> }
+       
+        </div>
+
         
       </form>
-      </div>
     );
   }
 }

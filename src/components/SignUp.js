@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  selectedValue: '',
   student: '',
   prof: '',
   error: null,
@@ -83,6 +84,7 @@ class SignUpForm extends Component {
   	const {
       username,
       email,
+      selectedValue,
       passwordOne,
       passwordTwo,
       error,

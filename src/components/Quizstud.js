@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import * as routes from '../constants/routes';
@@ -52,7 +51,10 @@ class QuizsStud extends React.Component {
       score,
     } = this.state;
     scoreRef.push({score});
-    history.push(routes.STUDENT)
+    count = 0;
+    db.ref('/Course/CSE/Lecture1/Quiz').remove();
+    lists = [];
+    history.push(routes.STUDENT);
 
   }
 
@@ -101,7 +103,7 @@ class QuizsStud extends React.Component {
       type="username"
       margin="normal"
       hintText="Enter your solution here"
-      onChange={event => this.setState({choice: event.target.value, score: event.target.value==ans ? 1:-1})}
+      onChange={event => this.setState({choice: event.target.value, score: event.target.value===ans ? -1:1})}
     >
     </TextField>
     <Button onClick={this.checkans}>Submit</Button>

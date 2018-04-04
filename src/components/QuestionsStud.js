@@ -2,7 +2,7 @@ import React from 'react';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-// import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -20,14 +20,14 @@ export default class QuestionForm extends React.Component {
   };
 
   handleOpen = () => {
-    this.state = {open: true};
+    this.setState({open: true});
   };
   handleClose = () => {
-    this.state = {open: false};
+    this.setState({open: false});
   };
   handleChange = (event, index, value) => this.setState({value});
   handleSubmit = () =>{
-    this.state ={open: false};
+    this.setState({open: false});
     const{
       value,
       msg,
@@ -52,7 +52,7 @@ export default class QuestionForm extends React.Component {
 
     return (
       <div>
-      <MuiThemeProvider><div>
+      <MuiThemeProvider>
         <Button bsSize="large" bsStyle="success" onClick={this.handleOpen} block>Ask Questions</Button>
         <Dialog
           title="Ask Questions"
@@ -83,7 +83,7 @@ export default class QuestionForm extends React.Component {
           <MenuItem value={5} primaryText="5" />
         </SelectField>
         <br />
-        </Dialog></div>
+        </Dialog>
         </MuiThemeProvider>
       </div>
     );

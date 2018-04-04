@@ -22,15 +22,10 @@ const withAuthentication = (Component) => {
     componentDidMount() {
       firebase.auth.onAuthStateChanged(authUser => {
         authUser
-          ? this.state = { authUser }
-          : this.state = { authUser: null };
+          ? this.setState(() => ({ authUser }))
+          : this.setState(() => ({ authUser: null }));
       });
     }
-
-    componentWillUnmount() {
-      this.state.off;
-
-    };
 
     render() {
       return (
