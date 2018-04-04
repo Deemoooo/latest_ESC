@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import * as routes from '../constants/routes';
@@ -48,63 +47,47 @@ class QuizsStud extends React.Component {
     }else {
       alert("Try harder")
     }
-    const {
-      score,
-    } = this.state;
-    scoreRef.push({score});
+    scoreRef.push(this.state.score);
     history.push(routes.STUDENT)
 
   }
 
   render() {
-    leadsRef.on('value', function(snapshot) {
-      if(snapshot.numChildren()!=count){
-        count = snapshot.numChildren();
-        alert("You have received new quizzes from your professor!");
+    scoreRef.on('value', function(snapshot) {
         lists=[];
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
           lists.push(
-            <div>
             <ListItem
-              primaryText={childData.qn}
+            primaryText={childData.score}
+            secondaryText={`Page of slides: ${childData.value}`}
             />
-            <ListItem
-              secondaryText={`Option 1: ${childData.op1}`}
-            />
-            <ListItem
-              secondaryText={`Option 2: ${childData.op2}`}
-            />
-            <ListItem
-              secondaryText={`Option 3: ${childData.op3}`}
-            />
-            <ListItem
-              secondaryText={`Option 4: ${childData.op4}`}
-            />
-            </div>
           );
         });
-      }
+        return(<div>
+         <MuiThemeProvider>
+         <Card>
+        <CardHeader
+          title="Students Performance"
+        />
+        <List on>
+        {lists}
+        </List>
+        </Card>
+        <Link to='/feature'><button class="btn btn-success">Back</button></Link>
+        </MuiThemeProvider>
+        </div>);
+      
     });
     return(<div>
      <MuiThemeProvider>
      <Card>
     <CardHeader
-      title="Quizzes from professor"
+      title="Students Performance"
     />
     <List on>
     {lists}
     </List>
-   
-    <TextField
-      id="password"
-      type="username"
-      margin="normal"
-      hintText="Enter your solution here"
-      onChange={event => this.setState({choice: event.target.value, score: event.target.value==ans ? 1:-1})}
-    >
-    </TextField>
-    <Button onClick={this.checkans}>Submit</Button>
     </Card>
     <Link to='/feature'><button class="btn btn-success">Back</button></Link>
     </MuiThemeProvider>
