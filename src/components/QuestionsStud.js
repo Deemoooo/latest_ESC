@@ -18,11 +18,25 @@ export default class QuestionForm extends React.Component {
     value: 1,
     msg: '',
   };
+  constructor(){
+    super();
+    this.handleOpen=this.handleOpen.bind(this);
+    this.handleClose=this.handleClose.bind(this);
+    this.handleChange=this.handleChange.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
+  }
 
+<<<<<<< HEAD
   handleOpen = () => {
     this.setState({open: true});
   };
   handleClose = () => {
+=======
+  handleOpen (){
+    this.setState({open: true});
+  };
+  handleClose (){
+>>>>>>> b4e45349d8cfe13e7d627670a12bd0b0b228ead9
     this.setState({open: false});
   };
   handleChange = (event, index, value) => this.setState({value});
@@ -32,7 +46,7 @@ export default class QuestionForm extends React.Component {
       value,
       msg,
     } = this.state;
-    db.ref('/Course/CSE/Lecture1/questions').push({value,msg});
+    db.ref('/Course/ESC/Lecture1/questions').push({value,msg});
   }
 
   render() {
@@ -45,7 +59,7 @@ export default class QuestionForm extends React.Component {
       <FlatButton
         label="Submit"
         primary={true}
-        keyboardFocused={true}
+        //keyboardFocused={true}
         onClick={this.handleSubmit}
       />,
     ];
@@ -54,6 +68,7 @@ export default class QuestionForm extends React.Component {
       <div>
       <MuiThemeProvider>
         <Button bsSize="large" bsStyle="success" onClick={this.handleOpen} block>Ask Questions</Button>
+
         <Dialog
           title="Ask Questions"
           actions={actions}

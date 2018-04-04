@@ -13,7 +13,6 @@ import QuizProf from './Quizprof';
 import QuizStud from './Quizstud';
 import Analysis from './Analysis';
 
-import Pushquiz from '../pfunctions/Quizzes';
 
 import * as routes from '../constants/routes';
 import withAuthentication from './withAuthentication';
@@ -51,10 +50,6 @@ const App = () =>
       <Route 
         exact path={routes.STUDENT}
         component={() => <Features />}
-      />
-      <Route 
-        exact path={routes.PUSHQUIZ}
-        component={() => <Pushquiz />}
       />
       <Route
         exact path={routes.QUESTIONP}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import * as routes from '../constants/routes';
 import { db } from '../firebase/firebase';
@@ -9,8 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 var leadsRef = db.ref('/Course/CSE/Lecture1/questions');
 var lists=[];
-
-
 
 export default class QuestionsProf extends React.Component {
   constructor() {
@@ -52,7 +50,7 @@ export default class QuestionsProf extends React.Component {
     <CardHeader
       title="Questions from students"
     />
-    <List on>
+    <List >
     {lists}
     </List>
     </Card>
@@ -62,3 +60,4 @@ export default class QuestionsProf extends React.Component {
   }
 
 }
+export {lists};
