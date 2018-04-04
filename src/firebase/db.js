@@ -2,7 +2,7 @@ import { db } from './firebase';
 
 // User API
 
-export const doCreateUser = (id, email, role, student, prof) =>{
+export const doCreateUser = (id, email, role, student, prof) => {
 	if (role === "Professor") {
 		db.ref(`profs/${id}`).set({
     	email,
@@ -25,3 +25,8 @@ export const onceGetProfs = () =>
 
 export const onceGetStudents = () =>
   db.ref('students').once('value');
+
+// export const submitFeedback = (pace) =>
+//   db.ref('/Course/CSE/Lecture1/feedback/q1').set({
+// 	pace,
+//   });
