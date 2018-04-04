@@ -9,8 +9,8 @@ import {TextField} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-var leadsRef = db.ref('/Course/CSE/Quiz');
-var scoreRef = db.ref('/Course/CSE/Lecture1/students');
+var leadsRef = db.ref('/Course/CSE/Lecture1/Quiz');
+var scoreRef = db.ref('/Course/CSE/Lecture1/students/student1');
 var lists=[];
 var count = 0;
 var ans = 2;
@@ -47,7 +47,10 @@ class QuizsStud extends React.Component {
     }else {
       alert("Try harder")
     }
-    scoreRef.push(this.state.score);
+    const {
+      score,
+    } = this.state;
+    scoreRef.push({score});
     history.push(routes.STUDENT)
 
   }
@@ -55,7 +58,7 @@ class QuizsStud extends React.Component {
   render() {
     leadsRef.on('value', function(snapshot) {
       if(snapshot.numChildren()!=count){
-        count = count + 1;
+        count = snapshot.numChildren();
         alert("You have received new quizzes from your professor!");
         lists=[];
         snapshot.forEach(function(childSnapshot) {
@@ -97,7 +100,7 @@ class QuizsStud extends React.Component {
       type="username"
       margin="normal"
       hintText="Enter your solution here"
-      onChange={event => this.setState({choice: event.target.value, score: event.target.value==ans})}
+      onChange={event => this.setState({choice: event.target.value, score: event.target.value==ans ? 1:-1})}
     >
     </TextField>
     <Button onClick={this.checkans}>Submit</Button>

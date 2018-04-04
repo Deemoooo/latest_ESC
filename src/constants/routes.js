@@ -10,3 +10,4 @@ export const PUSHQUIZ = '/prof/Quizzes';
 export const QUESTIONP = '/QuestionsProf';
 export const QUIZP = '/QuizProf';
 export const QUIZSTU = '/QuizStud';
+export const ANALYSIS = '/Analysis';

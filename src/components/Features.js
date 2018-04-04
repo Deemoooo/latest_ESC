@@ -110,7 +110,7 @@ class ProfThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/prof/Analysis"><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
+                <Link to="/Analysis"><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
               </Col>           
             </Col>
             <Col sm={2} md={4}>
@@ -166,7 +166,8 @@ class StudentThing extends React.Component {
 
   find() {
     const {profs} = this.state.profs;
-    alert(this.state.prof===null);
+    alert("Successful!");
+  //  alert(this.state.prof===null);
     this.setState(() => ({text: "Prof1"}));
     // {Object.keys(profs).map(key =>
     //   <div key={key}>{profs[key].email}</div>

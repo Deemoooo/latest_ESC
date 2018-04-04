@@ -11,6 +11,7 @@ import AccountPage from './Account';
 import QuestionsProf from './QuestionsProf';
 import QuizProf from './Quizprof';
 import QuizStud from './Quizstud';
+import Analysis from './Analysis';
 
 import Pushquiz from '../pfunctions/Quizzes';
 
@@ -66,6 +67,10 @@ const App = () =>
       <Route
         exact path={routes.QUIZSTU}
         component={() => <QuizStud />}
+      />
+      <Route
+        exact path={routes.ANALYSIS}
+        component={() => <Analysis />}
       />
     </div>
   </Router>
