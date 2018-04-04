@@ -10,7 +10,7 @@ import HomePage from './Home';
 import AccountPage from './Account';
 import QuestionsProf from './QuestionsProf';
 
-import Pushquiz from '../pfunctions/Quizzes';
+//import Pushquiz from '../pfunctions/Quizzes';
 
 import * as routes from '../constants/routes';
 import withAuthentication from './withAuthentication';
@@ -45,13 +45,9 @@ const App = () =>
         exact path={routes.ACCOUNT}
         component={() => <AccountPage />}
       />
-      <Route 
+      <Route
         exact path={routes.STUDENT}
         component={() => <Features />}
-      />
-      <Route 
-        exact path={routes.PUSHQUIZ}
-        component={() => <Pushquiz />}
       />
       <Route
         exact path={routes.QUESTIONP}
