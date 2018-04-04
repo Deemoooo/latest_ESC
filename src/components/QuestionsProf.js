@@ -10,8 +10,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 var leadsRef = db.ref('/Course/CSE/Lecture1/questions');
 var lists=[];
 
-
-
 export default class QuestionsProf extends React.Component {
 
   render() {

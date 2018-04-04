@@ -8,7 +8,8 @@ import SignInPage from './SignIn';
 import PasswordForgetPage from './PasswordForget';
 import HomePage from './Home';
 import AccountPage from './Account';
-import StudentFeedbackPage from './Student/Feedback';
+import StudentFeedbackForm from './Student/Feedback';
+import ProfFeedbackPage from './Prof/Feedback';
 import QuestionsProf from './QuestionsProf';
 import QuizProf from './Quizprof';
 import QuizStud from './Quizstud';
@@ -31,7 +32,8 @@ const App = () =>
       <Route exact path={routes.HOME} component={() => <HomePage />} />
       <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
       <Route exact path={routes.STUDENT} component={() => <Features />} />
-      <Route exact path={routes.FEEDBACK_STUDENT} component={() => <StudentFeedbackPage />} />
+      <Route exact path={routes.FEEDBACK_STUDENT} component={() => <StudentFeedbackForm />} />
+      <Route exact path={routes.FEEDBACK_PROF} component={() => <ProfFeedbackPage />} />
       <Route exact path={routes.QUESTIONP} component={() => <QuestionsProf />}/>
       <Route exact path={routes.QUIZP} component={() => <QuizProf />} />
       <Route exact path={routes.QUIZSTU} component={() => <QuizStud />}
@@ -42,7 +44,6 @@ const App = () =>
       />
     </div>
   </Router>
-//      <Route exact path={routes.FEEDBACK_PROF} component={() => <Features />} />
 //      <Route exact path={routes.PUSHQUIZ} component={() => <Pushquiz />} />
 
 

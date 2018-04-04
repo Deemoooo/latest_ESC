@@ -78,10 +78,9 @@ export default class StudentFeedbackForm extends React.Component {
 	      />,
 	    ];
 		return(
-			<div>
 			<MuiThemeProvider>
+			<div>
 	            <Button bsSize="large" bsStyle="success" onClick={this.handleOpen} block>Give Feedback</Button>
-
 				<Dialog
 					title="Give Feedback!"
 			        actions={actions}
@@ -146,8 +145,9 @@ export default class StudentFeedbackForm extends React.Component {
 			        </TextField><br />
 
 			        </Dialog>
-				</MuiThemeProvider>
-			</div>
+			    </div>
+			</MuiThemeProvider>
+			
 			);
 	}
 }
