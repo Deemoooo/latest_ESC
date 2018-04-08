@@ -88,7 +88,7 @@ describe('ESC Tests', () => {
 
     it('Fills in questions', () => {
       // NOTE: Use more identifiable classes in *source code*!
-      cy.get(':nth-child(2) > #username').type('Post questions to professor test')
+      cy.get('#username').type('Post questions to professor test')
     })
 
     it('Clicks submit', () => {
