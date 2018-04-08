@@ -1,11 +1,23 @@
 /*
 This end-to-end test suite for our ESC project tests the following:
-- Login for prof account
-- Adding a quiz via prof account, then validating the visibility of the quiz in student account.
+- Login for student account
+- Adding a question via student account, then validating the visibility of the question in professor account, 
+under the Get Feedback feature
 
-Important notes:
-- A test quiz added by this test suite is *not deleted* since there is no deletion functionality.
-  - Set REALLY_ADD_QUIZ to true or false to control whether a quiz is really created or not.
+Important Note:
+The questions and feedback features ought to be separate but are currently joined as one.
+When they are segmented out we need to change the settings in the current file to relect that.
+
+Key things to change:
+Navigation to the forms -- buttons to click
+it('Opens Review Feedback interface', () => {
+      cy.get('.btn').contains('Review Feedback').click()
+    })
+
+    it('Exit and reopen feedback interface', () => {
+      cy.get('.btn').contains('Back').click()
+      cy.get('.btn').contains('Review Feedback').click()
+    })
 */
 
 //======================
@@ -102,8 +114,6 @@ describe('ESC Tests', () => {
       cy.get('.btn').contains('Review Feedback').click()
     })
 
-    // HACK: FIX THIS!!!
-    // Bug: The quizzes don't show up until we exit and re-enter the quiz interface.
     it('Exit and reopen feedback interface', () => {
       cy.get('.btn').contains('Back').click()
       cy.get('.btn').contains('Review Feedback').click()
