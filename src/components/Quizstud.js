@@ -14,9 +14,9 @@ var studRef = db.ref('/Course/CSE/Lecture1/students/');
 var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
 var lists=[];
 var count = 0;
-var name = "Alex";
+var name = "Mike";
 var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student2'); //student1 hardcoded, Lecture1 hardcoded
-var stud = "Student2";
+var stud = "Student1";
 
 class QuizsStud extends React.Component {
   constructor(props) {

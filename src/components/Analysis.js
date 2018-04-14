@@ -10,6 +10,7 @@ import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 var scoreRef = db.ref('/Course/CSE/Lecture1/students');
+var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
 var lists=[];
 var count = 0;
 var ans = 2;
@@ -24,8 +25,9 @@ class QuizsStud extends React.Component {
   }
 
   render() {
+    lists = [];
     scoreRef.on('value', function(snapshot) {
-        lists=[];
+
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
           var result = (childData.score / childData.time)*100;
@@ -46,20 +48,20 @@ class QuizsStud extends React.Component {
             />
           );
         });
-        return(<div>
-         <MuiThemeProvider>
-         <Card>
-        <CardHeader
-          title="Students Performance"
+    });
+    quizRef.on('value', function(snapshot) {
+      var theone;
+      snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+        if (childData.score===1) {
+          theone = childData.name;
+        }
+      });
+      lists.push(
+        <ListItem 
+          primaryText={theone + " (First one to answer correctly)"}
         />
-        <List on>
-        {lists}
-        </List>
-        </Card>
-        <Link to='/feature'><button class="btn btn-success">Back</button></Link>
-        </MuiThemeProvider>
-        </div>);
-      
+      );
     });
     return(<div>
      <MuiThemeProvider>
