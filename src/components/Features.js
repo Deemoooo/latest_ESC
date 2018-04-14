@@ -165,18 +165,17 @@ class StudentThing extends React.Component {
     );
   }
 
-  find() {
+  find(name) {
     const {profs} = this.state.profs;
     alert("Successful!");
-  //  alert(this.state.prof===null);
-    this.setState(() => ({text: "Prof1"}));
-    // {Object.keys(profs).map(key =>
-    //   <div key={key}>{profs[key].email}</div>
-    // )}
+    this.setState(() => ({text: '/Course/CSE/Lecture1/Quiz'}));
   }
 
   render () {
-    const {profs} = this.state;
+    const {
+      profs,
+      text,
+    } = this.state;
     return (
       <div>
         <Grid>
@@ -200,7 +199,7 @@ class StudentThing extends React.Component {
                     bsStyle="default"
                     title="Computer System Engineering"
                     noCaret>
-                  <MenuItem eventKey="Prof1" onClick={() => this.find()}>Prof1</MenuItem>
+                  <MenuItem eventKey="Prof1" onClick={() => this.find("Prof1")}>Prof1</MenuItem>
                   <MenuItem eventKey="2">Prof2</MenuItem>
                   <MenuItem eventKey="3">Prof3</MenuItem>
                 </DropdownButton>
@@ -254,7 +253,7 @@ class StudentThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-<StudentFeedbackForm />
+              <StudentFeedbackForm />
               
               </Col>           
             </Col>
@@ -284,8 +283,7 @@ class StudentThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-
-                <Link to="/QuizStud"><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
+                <Link to="/QuizStud" text={text}><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
               </Col>           
             </Col>
             <Col sm={2}/>

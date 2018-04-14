@@ -9,8 +9,7 @@ import {TextField} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-var leadsRef = db.ref('/Course/CSE/Lecture1/Quiz');
-var scoreRef = db.ref('/Course/CSE/Lecture1/students/student1');
+var scoreRef = db.ref('/Course/CSE/Lecture1/students');
 var lists=[];
 var count = 0;
 var ans = 2;
@@ -19,36 +18,8 @@ class QuizsStud extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      qn: '',
-      op1: '',
-      op2: '',
-      op3: '',
-      op4: '',
-      ans: '22',
-      choice: '',
-      score: 0,
+      
     }
-    this.checkans = this.checkans.bind(this);
-
-  }
-
-  checkans() {
-    const {
-      history,
-    } = this.props;
-    var childData;
-    leadsRef.on('value', function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          childData = childSnapshot.val();
-        });      
-    });
-    if (ans==this.state.choice) {
-      alert("You are correct!")
-    }else {
-      alert("Try harder")
-    }
-    scoreRef.push(this.state.score);
-    history.push(routes.STUDENT)
 
   }
 
@@ -57,10 +28,21 @@ class QuizsStud extends React.Component {
         lists=[];
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
+          var result = (childData.score / childData.time)*100;
           lists.push(
+            childData.time<10 ? 
             <ListItem
-            primaryText={childData.score}
-            secondaryText={`Page of slides: ${childData.value}`}
+            primaryText={childData.name}
+            secondaryText={`Overall score: ${result}`}
+            /> : 
+            result>60 ?
+            <ListItem
+            primaryText={childData.name}
+            secondaryText={`Overall score: ${result}`}
+            /> :
+            <ListItem
+            primaryText={childData.name + " (BELOW AVERAGE)"}
+            secondaryText={`Overall score: ${result}`}
             />
           );
         });

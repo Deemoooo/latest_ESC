@@ -25,3 +25,6 @@ export const onceGetProfs = () =>
 
 export const onceGetStudents = () =>
   db.ref('students').once('value');
+
+export const onceGetQuiz = () =>
+  db.ref('Course/CSE/Lecture1/Quiz').once('value');

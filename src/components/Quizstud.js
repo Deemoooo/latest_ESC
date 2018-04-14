@@ -9,11 +9,14 @@ import {TextField} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-var leadsRef = db.ref('/Course/CSE/Lecture1/Quiz');
-var scoreRef = db.ref('/Course/CSE/Lecture1/students/student1');
+var leadsRef = db.ref('/Course/CSE/Lecture1/Quiz');  // Lecture1 hardcoded
+var studRef = db.ref('/Course/CSE/Lecture1/students/');
+var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
 var lists=[];
 var count = 0;
-var ans = 2;
+var name = "Alex";
+var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student2'); //student1 hardcoded, Lecture1 hardcoded
+var stud = "Student2";
 
 class QuizsStud extends React.Component {
   constructor(props) {
@@ -24,35 +27,61 @@ class QuizsStud extends React.Component {
       op2: '',
       op3: '',
       op4: '',
-      ans: '22',
+      ans: '',
       choice: '',
       score: 0,
+      text: props.text,
     }
     this.checkans = this.checkans.bind(this);
-
+   // alert(this.state.text);
   }
 
   checkans() {
     const {
       history,
     } = this.props;
-    var childData;
-    leadsRef.on('value', function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          childData = childSnapshot.val();
-        });      
+
+    var user;
+    // var leadsRef = db.ref(this.props);
+    leadsRef.on('value', function (snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+          user = childSnapshot.val();
+        }); // Keep the local user object synced with the Firebase userRef 
     });
-    if (ans==this.state.choice) {
-      alert("You are correct!")
+
+    var score;
+
+    if (user.value==this.state.choice) {
+      alert("You are correct!");
+      score = 1;
     }else {
-      alert("Try harder")
+      alert("Try harder");
+      score = 0;
     }
-    const {
-      score,
-    } = this.state;
-    scoreRef.push({score});
+
+
+    studRef.child(stud).once('value', function(snapshot) {
+      var exists = (snapshot.val() !== null);
+      var student = snapshot.val();
+      if(!exists) {
+        scoreRef.set({
+          score: score,
+          name: name,
+          time: 1,
+        });
+      }
+      else {
+        scoreRef.update({
+          score: student.score + score,
+          time: student.time + 1,
+        });
+      }
+    });
+
+    quizRef.push({score,name});
+    
     count = 0;
-    db.ref('/Course/CSE/Lecture1/Quiz').remove();
+   // db.ref('/Course/CSE/Lecture1/Quiz').remove();
     lists = [];
     history.push(routes.STUDENT);
 
@@ -103,7 +132,7 @@ class QuizsStud extends React.Component {
       type="username"
       margin="normal"
       hintText="Enter your solution here"
-      onChange={event => this.setState({choice: event.target.value, score: event.target.value===ans ? -1:1})}
+      onChange={event => this.setState({choice: event.target.value})}
     >
     </TextField>
     <Button onClick={this.checkans}>Submit</Button>

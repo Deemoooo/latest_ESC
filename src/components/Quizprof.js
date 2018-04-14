@@ -41,8 +41,7 @@ export default class QuizForm extends React.Component {
       value,
       qn,
     } = this.state;
-    db.ref('/Course/CSE/Lecture1/Quiz').remove();
-    db.ref('/Course/CSE/Lecture1/Quiz').push({qn, op1, op2, op3, op4, value});
+    db.ref('/Course/CSE/Lecture1/Quiz').push({qn, op1, op2, op3, op4, value}); // Lecture1 hardcoded
   }
 
   render() {
