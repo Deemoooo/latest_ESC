@@ -20,7 +20,6 @@ import SignOutButton from './SignOut';
 
 import QuestionForm from './QuestionsStud';
 import StudentFeedbackForm from './Student/Feedback';
-
 import Quizprof from './Quizprof';
 
 const Features = (props, { authUser }) =>
@@ -51,7 +50,7 @@ class ProfThing extends React.Component {
             <Col sm={2} md={2}>
               <br />
               <br />
-              <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
+              <Link to={routes.SIGN_IN} ><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
             </Col>
           </Row>
         </Grid>
@@ -105,7 +104,7 @@ class ProfThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <img width="90%"  height="100%"src= {perf} rounded />
+                        <img width="90%"  height="100%" src= {perf} rounded />
                       </Col>
                       <br />
                       <br />
@@ -117,7 +116,7 @@ class ProfThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/Analysis"><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
+                <Link to={routes.ANALYSIS}><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
               </Col>           
             </Col>
             <Col sm={2} md={4}>
@@ -193,7 +192,7 @@ class StudentThing extends React.Component {
             <Col sm={2} md={2}>
               <br />
               <br />
-              <Link to="/SignIn"><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
+              <Link to={routes.SIGN_IN}><SignOutButton bsSize="small" bsStyle="danger">LOGOUT</SignOutButton></Link>
             </Col>
           </Row>
           <Grid>
@@ -249,7 +248,7 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <img width="90%"  height="100%"src= {studfeed} rounded />
+                        <img width="90%"  height="100%" src= {studfeed} rounded />
                       </Col>
                       <br />
                       <br />
@@ -290,7 +289,7 @@ class StudentThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/QuizStud" text={text}><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
+                <Link to={routes.QUIZS} text={text}><Button bsSize="large" bsStyle="success" block>Get Quiz</Button></Link>
               </Col>           
             </Col>
             <Col sm={2}/>

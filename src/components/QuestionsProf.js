@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import * as routes from '../constants/routes';
 import { db } from '../firebase/firebase';
@@ -64,7 +64,7 @@ export default class QuestionsProf extends React.Component {
     {lists}
     </List>
     </Card>
-    <Link to='/feature'><button class="btn btn-success">Back</button></Link>
+    <Link to={routes.HOME}><button class="btn btn-success">Back</button></Link>
     </MuiThemeProvider>
     </div>);
   }

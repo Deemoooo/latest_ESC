@@ -46,6 +46,9 @@ class QuizsStud extends React.Component {
     this.state = {
       
     }
+  }
+
+  componentDidMount(){
 
   }
 
@@ -58,7 +61,6 @@ class QuizsStud extends React.Component {
     var msg = "low";
     var alertplace = db.ref('/Course/CSE/Lecture1/students/Student1');
     scoreRef.on('value', function(snapshot) {
-
         snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
           var result = (childData.score / childData.time)*100;
@@ -123,7 +125,7 @@ class QuizsStud extends React.Component {
     {lists}
     </List>
     </Card>
-    <Link to='/feature'><button class="btn btn-success">Back</button></Link>
+    <Link to={routes.HOME}><button class="btn btn-success">Back</button></Link>
     </MuiThemeProvider>
     </div>);
   }

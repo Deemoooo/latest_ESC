@@ -4,7 +4,7 @@ import * as routes from '../constants/routes';
 import { db } from '../firebase/firebase';
 
 import {List, ListItem} from 'material-ui/List';
-import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader} from 'material-ui/Card';
 import {TextField} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -12,6 +12,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 import { cyan500 } from 'material-ui/styles/colors';
 
+// only loads when typed ??? 
 var leadsRef = db.ref('/Course/CSE/Lecture1/Quiz');  // Lecture1 hardcoded
 var studRef = db.ref('/Course/CSE/Lecture1/students/');
 var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
@@ -19,7 +20,6 @@ var lists=[];
 var count = 0;
 var name = "Mike";
 var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student1'); //student1 hardcoded, Lecture1 hardcoded
-var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student2'); //student1 hardcoded, Lecture1 hardcoded
 var stud = "Student1";
 
 const muiTheme = getMuiTheme({
@@ -64,7 +64,7 @@ class QuizsStud extends React.Component {
 
     var score;
 
-    if (user.value==this.state.choice) {
+    if (user.value === this.state.choice) {
       alert("You are correct!");
       score = 1;
     }else {
@@ -109,7 +109,7 @@ class QuizsStud extends React.Component {
               }
           });
     leadsRef.on('value', function(snapshot) {
-      if(snapshot.numChildren()!=count){
+      if(snapshot.numChildren() !== count){
         count = snapshot.numChildren();
         alert("You have received new quizzes from your professor!");
         lists=[];
