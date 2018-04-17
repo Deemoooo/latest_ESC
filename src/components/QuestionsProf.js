@@ -6,9 +6,21 @@ import { db } from '../firebase/firebase';
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { cyan500 } from 'material-ui/styles/colors';
+import AppBar from 'material-ui/AppBar';
 
 var leadsRef = db.ref('/Course/CSE/Lecture1/questions');
 var lists=[];
+
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: cyan500,
+  },
+  appBar: {
+    height: 50,
+  },
+});
 
 export default class QuestionsProf extends React.Component {
   constructor() {
@@ -34,6 +46,7 @@ export default class QuestionsProf extends React.Component {
          <Card>
         <CardHeader
           title="Questions from students"
+          titleStyle = {{ fontSize: '40px'}}
         />
         <List on>
         {lists}
@@ -49,6 +62,7 @@ export default class QuestionsProf extends React.Component {
      <Card>
     <CardHeader
       title="Questions from students"
+      titleStyle = {{ fontSize: '40px'}}
     />
     <List >
     {lists}
