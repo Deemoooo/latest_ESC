@@ -8,6 +8,9 @@ import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import {TextField} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+import { cyan500 } from 'material-ui/styles/colors';
 
 var leadsRef = db.ref('/Course/CSE/Lecture1/Quiz');  // Lecture1 hardcoded
 var studRef = db.ref('/Course/CSE/Lecture1/students/');
@@ -15,8 +18,17 @@ var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
 var lists=[];
 var count = 0;
 var name = "Mike";
-var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student1'); //student1 hardcoded, Lecture1 hardcoded
+var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student2'); //student1 hardcoded, Lecture1 hardcoded
 var stud = "Student1";
+
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: cyan500,
+  },
+  appBar: {
+    height: 50,
+  },
+});
 
 class QuizsStud extends React.Component {
   constructor(props) {
@@ -88,13 +100,6 @@ class QuizsStud extends React.Component {
   }
 
   render() {
-    scoreRef.on('value', function(snapshot) {
-        var childData = snapshot.val();
-        if(childData.msg === "low") {
-          alert("You are performing bad!")
-          scoreRef.update({msg: null})
-        }
-    });
     leadsRef.on('value', function(snapshot) {
       if(snapshot.numChildren()!=count){
         count = snapshot.numChildren();
@@ -129,6 +134,7 @@ class QuizsStud extends React.Component {
      <Card>
     <CardHeader
       title="Quizzes from professor"
+      titleStyle = {{ fontSize: '40px' }}
     />
     <List on>
     {lists}
