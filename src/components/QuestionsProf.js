@@ -6,11 +6,25 @@ import { db } from '../firebase/firebase';
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { cyan500 } from 'material-ui/styles/colors';
+import AppBar from 'material-ui/AppBar';
 
 var leadsRef = db.ref('/Course/CSE/Lecture1/questions');
 var titleRef = db.ref('/Course/CSE/Lecture1/title');
 var lists = [];
 var title = "";
+
+
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: cyan500,
+  },
+  appBar: {
+    height: 50,
+  },
+});
+
 export default class QuestionsProf extends React.Component {
   constructor() {
     super();
@@ -19,8 +33,6 @@ export default class QuestionsProf extends React.Component {
   render() {
     titleRef.once('value').then((snapshot) =>{
       title = snapshot.val();
-      console.log(title);
-      // this.state.title = title;
     });
     leadsRef.on('value', function(snapshot) {
       if(snapshot.numChildren()!=lists.length){
@@ -36,15 +48,19 @@ export default class QuestionsProf extends React.Component {
             />
           );
         });
+
       }
     });
     return(<div>
      <MuiThemeProvider>
      <Card>
     <CardHeader
+
       title={`Questions from ${title}`}
+      titleStyle={{ fontSize: '40px'}}
+
     />
-    <List >
+    <List on>
     {lists}
     </List>
     </Card>

@@ -10,6 +10,9 @@ import { db } from '../firebase';
 import quiz from "../images/quiz.png";
 import perf from "../images/performance.png";
 import feedback from "../images/feedback.png";
+import studfeed from "../images/studfeed.png";
+import studquiz from "../images/studquiz.png";
+import studques from "../images/studques.png";
 import question from "../images/question.png";
 
 import * as routes from '../constants/routes';
@@ -17,7 +20,6 @@ import SignOutButton from './SignOut';
 
 import QuestionForm from './QuestionsStud';
 import StudentFeedbackForm from './Student/Feedback';
-
 
 import Quizprof from './Quizprof';
 
@@ -73,7 +75,7 @@ class ProfThing extends React.Component {
                         <br/>
                         <Col>
                           <Col sm={2} />
-                          <Image src= {feedback} rounded />
+                          <Image width='100%' src= {feedback} rounded />
                         </Col>
                         <br />
                         <br />
@@ -247,7 +249,7 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <Image src= {feedback} rounded />
+                        <Image src= {studfeed} rounded />
                       </Col>
                       <br />
                       <br />
@@ -276,9 +278,10 @@ class StudentThing extends React.Component {
                       />
                       <br/>
                       <Col>
-                        <Col sm={2} />
-                        <Image src= {feedback} rounded />
+                        <Col sm={1} />
+                        <Image src= {studquiz} rounded />
                       </Col>
+                      <br />
                       <br />
                       <br />
                     </Card>
@@ -306,10 +309,9 @@ class StudentThing extends React.Component {
                       />
                       <br/>
                       <Col>
-                        <Col sm={3} />
-                        <Image src= {question} rounded />
+                        <Col sm={5} />
+                        <Image src= {studques} rounded />
                       </Col>
-                      <br />
                       <br />
                     </Card>
                   </Col>
