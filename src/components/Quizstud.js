@@ -18,6 +18,7 @@ var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
 var lists=[];
 var count = 0;
 var name = "Mike";
+var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student1'); //student1 hardcoded, Lecture1 hardcoded
 var scoreRef = db.ref('/Course/CSE/Lecture1/students/Student2'); //student1 hardcoded, Lecture1 hardcoded
 var stud = "Student1";
 
@@ -100,6 +101,13 @@ class QuizsStud extends React.Component {
   }
 
   render() {
+    scoreRef.on('value', function(snapshot) {
+              var childData = snapshot.val();
+              if(childData.msg === "low") {
+                alert("You are performing bad!")
+                scoreRef.update({msg: null})
+              }
+          });
     leadsRef.on('value', function(snapshot) {
       if(snapshot.numChildren()!=count){
         count = snapshot.numChildren();
@@ -129,6 +137,8 @@ class QuizsStud extends React.Component {
         });
       }
     });
+
+
     return(<div>
      <MuiThemeProvider>
      <Card>
