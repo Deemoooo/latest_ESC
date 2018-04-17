@@ -75,7 +75,7 @@ class ProfThing extends React.Component {
                         <br/>
                         <Col>
                           <Col sm={2} />
-                          <Image width='100%' src= {feedback} rounded />
+                          <img width="90%"  height="100%"src= {feedback} rounded />
                         </Col>
                         <br />
                         <br />
@@ -105,7 +105,7 @@ class ProfThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <Image src= {perf} rounded />
+                        <img width="90%"  height="100%"src= {perf} rounded />
                       </Col>
                       <br />
                       <br />
@@ -136,7 +136,7 @@ class ProfThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <Image src= {quiz} rounded />
+                        <img width="90%"  height="100%"src= {quiz} rounded />
                       </Col>
                       <br />
                       <br />
@@ -249,7 +249,7 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <Image src= {studfeed} rounded />
+                        <img width="90%"  height="100%"src= {studfeed} rounded />
                       </Col>
                       <br />
                       <br />
@@ -279,9 +279,8 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={1} />
-                        <Image src= {studquiz} rounded />
+                        <img width="90%"  height="100%" src= {studquiz} rounded />
                       </Col>
-                      <br />
                       <br />
                       <br />
                     </Card>
@@ -307,10 +306,9 @@ class StudentThing extends React.Component {
                           title="Ask Question"
                           subtitle="Let the professor know your question"
                       />
-                      <br/>
                       <Col>
                         <Col sm={5} />
-                        <Image src= {studques} rounded />
+                        <img width="90%"  height="100%"src= {studques} rounded />
                       </Col>
                       <br />
                     </Card>
