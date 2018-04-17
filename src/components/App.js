@@ -12,6 +12,8 @@ import QuestionsProf from './QuestionsProf';
 import QuizProf from './Quizprof';
 import QuizStud from './Quizstud';
 import Analysis from './Analysis';
+import StudentFeedbackForm from './Student/Feedback';
+import FeedbackProf from './Prof/Feedback';
 
 
 import * as routes from '../constants/routes';
@@ -23,50 +25,19 @@ const App = () =>
 
       <hr/>
 
-      <Route
-        exact path={routes.LANDING}
-        component={() => <SignInPage />}
-      />
-      <Route
-        exact path={routes.SIGN_UP}
-        component={() => <SignUpPage />}
-      />
-      <Route
-        exact path={routes.SIGN_IN}
-        component={() => <SignInPage />}
-      />
-      <Route
-        exact path={routes.PASSWORD_FORGET}
-        component={() => <PasswordForgetPage />}
-      />
-      <Route
-        exact path={routes.HOME}
-        component={() => <HomePage />}
-      />
-      <Route
-        exact path={routes.ACCOUNT}
-        component={() => <AccountPage />}
-      />
-      <Route 
-        exact path={routes.STUDENT}
-        component={() => <Features />}
-      />
-      <Route
-        exact path={routes.QUESTIONP}
-        component={() => <QuestionsProf />}
-      />
-      <Route
-        exact path={routes.QUIZP}
-        component={() => <QuizProf />}
-      />
-      <Route
-        exact path={routes.QUIZSTU}
-        component={() => <QuizStud />}
-      />
-      <Route
-        exact path={routes.ANALYSIS}
-        component={() => <Analysis />}
-      />
+      <Route exact path={routes.LANDING} component={() => <SignInPage />} />
+      <Route exact path={routes.SIGN_UP} component={() => <SignUpPage />} />
+      <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
+      <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
+      <Route exact path={routes.HOME} component={() => <HomePage />} />
+      <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
+      <Route exact path={routes.STUDENT} component={() => <Features />} />
+      <Route exact path={routes.QUESTIONP} component={() => <QuestionsProf />} />
+      <Route exact path={routes.QUIZP} component={() => <QuizProf />} />
+      <Route exact path={routes.QUIZSTU} component={() => <QuizStud />} />
+      <Route exact path={routes.ANALYSIS} component={() => <Analysis />} />
+      <Route exact path={routes.FEEDBACKP} component={() => <FeedbackProf />} />
+      <Route exact path={routes.FEEDBACKS} component={() => <StudentFeedbackForm/>} />
     </div>
   </Router>
 

@@ -47,18 +47,10 @@ export default class StudentFeedbackForm extends React.Component {
 	  } = this.state;
 	  var ref = db.ref('/Course/CSE/Lecture1/feedback');
 	  // generates a new key for every form
-	  var newFeedbackRef = ref.child('/pace').push();
-	  var newKey = newFeedbackRef.key;
 	  if (this.state.pace === '0' || this.state.content === '0' || this.state.clarity === '0' || this.state.lecturer === ''){
 	  	this.setState({open:true, other:[other]});
 	  }else{
-		  ref.child('/pace').update({[newKey]:pace});
-		  ref.child('/content').update({[newKey]:content});
-		  ref.child('/clarity').update({[newKey]:clarity});
-		  ref.child('/lecturer').update({[newKey]:lecturer});
-		  if (this.state.other.length > 0){
-			  ref.child('/other').update({[newKey]:other});
-		  }	
+	  	ref.push({clarity,content,lecturer,other,pace});
 	  }
 	  
 	}

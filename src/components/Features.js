@@ -18,6 +18,7 @@ import SignOutButton from './SignOut';
 import QuestionForm from './QuestionsStud';
 import StudentFeedbackForm from './Student/Feedback';
 
+
 import Quizprof from './Quizprof';
 
 const Features = (props, { authUser }) =>
@@ -43,7 +44,7 @@ class ProfThing extends React.Component {
         <Grid>
           <Row className="show-grid">
             <Col sm={2} md={10}>
-              <h1>Hello Prof</h1>
+              <h1>Hello, Professor!</h1>
             </Col>
             <Col sm={2} md={2}>
               <br />
@@ -57,6 +58,7 @@ class ProfThing extends React.Component {
             <br />
             <br />
             <Col sm={2} md={4}>
+
               <MuiThemeProvider>
                 <br />
                 <br />
@@ -82,10 +84,11 @@ class ProfThing extends React.Component {
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
-                <Link to="/QuestionsProf"><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
+                <Link to={routes.FEEDBACKP}><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
               </Col>           
             </Col>
             <Col sm={2} md={4}>
+
               <MuiThemeProvider>
                 <br />
                 <br />
@@ -108,6 +111,7 @@ class ProfThing extends React.Component {
                   </Col>
                 </Row>
               </MuiThemeProvider>
+
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
@@ -115,6 +119,7 @@ class ProfThing extends React.Component {
               </Col>           
             </Col>
             <Col sm={2} md={4}>
+
               <MuiThemeProvider>
                 <br />
                 <br />
