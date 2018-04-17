@@ -5,11 +5,12 @@ import { db } from '../firebase/firebase';
 
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-import {TextField} from 'material-ui';
+import {TextField, RaisedButton} from 'material-ui';
 import {Button} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 var scoreRef = db.ref('/Course/CSE/Lecture1/students');
+var alertplace = db.ref('/Course/CSE/Lecture1/students/Student1');
 var quizRef = db.ref('/Course/CSE/Lecture1/quiz');
 var lists=[];
 var count = 0;
@@ -24,8 +25,14 @@ class QuizsStud extends React.Component {
 
   }
 
+  sendalert() {
+    alertplace.push("low");
+  }
+
   render() {
     lists = [];
+    var msg = "low";
+    var alertplace = db.ref('/Course/CSE/Lecture1/students/Student1');
     scoreRef.on('value', function(snapshot) {
 
         snapshot.forEach(function(childSnapshot) {
@@ -33,24 +40,29 @@ class QuizsStud extends React.Component {
           var result = (childData.score / childData.time)*100;
           lists.push(
             childData.time<10 ? 
+            <Card>
             <ListItem
             primaryText={childData.name}
             secondaryText={`Overall score: ${result}`}
-            /> : 
+            /></Card> : 
             result>60 ?
+            <Card>
             <ListItem
             primaryText={childData.name}
             secondaryText={`Overall score: ${result}`}
-            /> :
+            /></Card> :
+            <Card>
             <ListItem
             primaryText={childData.name + " (BELOW AVERAGE)"}
             secondaryText={`Overall score: ${result}`}
             />
+            <RaisedButton primary="true" onClick={() => alertplace.update({msg: msg})}>Click to send alert</RaisedButton>
+            </Card>
           );
         });
     });
     quizRef.on('value', function(snapshot) {
-      var theone;
+      var theone = "no";
       snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
         if (childData.score===1) {
@@ -59,7 +71,7 @@ class QuizsStud extends React.Component {
       });
       lists.push(
         <ListItem 
-          primaryText={theone + " (First one to answer correctly)"}
+          primaryText={theone==="no"? "" : theone + " (First one to answer correctly)"}
         />
       );
     });

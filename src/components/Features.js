@@ -10,6 +10,9 @@ import { db } from '../firebase';
 import quiz from "../images/quiz.png";
 import perf from "../images/performance.png";
 import feedback from "../images/feedback.png";
+import studfeed from "../images/studfeed.jpg";
+import studquiz from "../images/studquiz.jpg";
+import studques from "../images/studques.jpg";
 import question from "../images/question.png";
 
 import * as routes from '../constants/routes';
@@ -242,7 +245,7 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <Image src= {feedback} rounded />
+                        <Image src= {studfeed} rounded />
                       </Col>
                       <br />
                       <br />
@@ -272,7 +275,7 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={2} />
-                        <Image src= {feedback} rounded />
+                        <Image src= {studquiz} rounded />
                       </Col>
                       <br />
                       <br />
@@ -302,7 +305,7 @@ class StudentThing extends React.Component {
                       <br/>
                       <Col>
                         <Col sm={3} />
-                        <Image src= {question} rounded />
+                        <Image src= {studques} rounded />
                       </Col>
                       <br />
                       <br />
