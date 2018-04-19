@@ -1,23 +1,10 @@
 /*
 This end-to-end test suite for our ESC project tests the following:
 - Login for student account
-- Adding a question via student account, then validating the visibility of the question in professor account, 
-under the Get Feedback feature
+- adding feeback via student account, then checking feedback via prof account
 
-Important Note:
-The questions and feedback features ought to be separate but are currently joined as one.
-When they are segmented out we need to change the settings in the current file to relect that.
-
-Key things to change:
-Navigation to the forms -- buttons to click
-it('Opens Review Feedback interface', () => {
-      cy.get('.btn').contains('Review Feedback').click()
-    })
-
-    it('Exit and reopen feedback interface', () => {
-      cy.get('.btn').contains('Back').click()
-      cy.get('.btn').contains('Review Feedback').click()
-    })
+Important notes:
+- 
 */
 
 //======================
@@ -70,36 +57,37 @@ describe('ESC Tests', () => {
   })
 
   //======================
-  // Add Question
+  // Add Feedback
   //======================
-  context('Add Question', () => {
+  context('Add Feedback', () => {
 
     it('Is on feature page', () => {
       cy.url().should('includes', '/feature')
     })
 
-    it('Opens Ask Question interface', () => {
-      cy.get('.btn').contains('Ask Questions').click()
+    it('Opens Give Feedback interface', () => {
+      cy.get('.btn').contains('Give Feedback').click()
     })
 
-    it('Has 2 fields to fill', () => {
-      cy.contains('Ask Questions').children('div').should('have.length', 2)
+    it('Has Give Feedback Form', () => {
+      cy.contains('Give Feedback!')
     })
 
-    it('Fills in questions', () => {
-      cy.get('#username').type('Post questions to professor test')
+    it('Fills in feedback form', () => {
+      // NOTE: Use more identifiable classes in *source code*!
+      cy.get([style="font-size: 16px; color: rgba(0, 0, 0, 0.6); padding: 0px 24px 24px; box-sizing: border-box; overflow-y: auto; border-top: 1px solid rgb(224, 224, 224); border-bottom: 1px solid rgb(224, 224, 224); max-height: 404px;"])
     })
 
     it('Clicks submit', () => {
-      if (false) cy.contains('Submit').click()
+      if (REALLY_ADD_QUIZ) cy.contains('Submit').click()
     })
 
   })
 
   //======================
-  // Verify Question
+  // Verify Feedback
   //======================
-  context('Verify question was added', () => {
+  context('Verify feedback was added', () => {
 
     it('Logs in as professor', () => {
       cy.fullLogin(PROF_USER, PROF_PASS)
@@ -118,9 +106,8 @@ describe('ESC Tests', () => {
       cy.get('.btn').contains('Review Feedback').click()
     })
 
-    it('Has the newly added question', () => {
-      cy.contains('Post questions to professor test')
-      cy.contains('Page of slides: 1')
+    it('Has the newly added feedback', () => {
+      cy.contains('Other: testing feedback')
     })
 
     it('Exit the Get Feedback interface', () => {

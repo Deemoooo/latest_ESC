@@ -12,7 +12,7 @@ Important notes:
 // Config
 //======================
 const REALLY_ADD_QUIZ = false
-const PROF_USER = 'profwn@gmail.com'
+const PROF_USER = 'wnprof@gmail.com'
 const PROF_PASS = '123456'
 const STUDENT_USER = 'teststu@gmail.com'
 const STUDENT_PASS = '123456'
