@@ -39,19 +39,24 @@ const muiTheme = getMuiTheme({
 //   <MuiThemeProvider muiTheme={muiTheme}>
 //   </MuiThemeProvider>
 // );
-
+var dateRef = db.ref('/Course/CSE/Lecture1/date');
+var dated = '';
 class QuizsStud extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      date:'',
     }
   }
 
   componentDidMount(){
-
+    dateRef.once('value').then((snapshot) =>{
+      dated = snapshot.val();
+      this.setState({
+        date:dated,
+      });
+    });
   }
-
   sendalert() {
     alertplace.push("low");
   }
@@ -112,7 +117,7 @@ class QuizsStud extends React.Component {
      <MuiThemeProvider>
      <Card>
                 <CardHeader
-                  title="Student Performance"
+                  title={`Student Performance as of ${dated}`}
                   titleStyle = {{ fontSize: '40px'}}
                   // subtitle="Subtitle"
                   // avatar="https://placeimg.com/800/450/nature"

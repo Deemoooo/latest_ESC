@@ -58,8 +58,8 @@ class ProfThing extends React.Component {
           <Row className="show-grid">
             <br />
             <br />
-            <Col sm={2} md={4}>
 
+            <Col sm={2} md={3}>
               <MuiThemeProvider>
                 <br />
                 <br />
@@ -88,8 +88,37 @@ class ProfThing extends React.Component {
                 <Link to={routes.FEEDBACKP}><Button bsSize="large" bsStyle="success" block>Review Feedback</Button></Link>
               </Col>           
             </Col>
-            <Col sm={2} md={4}>
 
+            <Col sm={2} md={3}>
+              <MuiThemeProvider>
+                <br />
+                <br />
+                <br /> 
+                <Row>
+                  <Col md={12}>
+                    <Card>
+                        <CardHeader
+                            title="Review Questions"
+                            subtitle="Check the questions from students"
+                        />
+                        <br/>
+                        <Col>
+                          <Col sm={2} />
+                          <img width="90%"  height="100%"src= {feedback} rounded />
+                        </Col>
+                        <br />
+                        <br />
+                    </Card>
+                  </Col>
+                </Row>
+              </MuiThemeProvider>
+              <br/>
+              <Col sm={2} />
+              <Col sm={8} className="Quizimage">
+                <Link to={routes.QUESTIONP}><Button bsSize="large" bsStyle="success" block>Review Questions</Button></Link>
+              </Col>           
+            </Col>
+            <Col sm={2} md={3}>
               <MuiThemeProvider>
                 <br />
                 <br />
@@ -112,15 +141,14 @@ class ProfThing extends React.Component {
                   </Col>
                 </Row>
               </MuiThemeProvider>
-
               <br/>
               <Col sm={2} />
               <Col sm={8} className="Quizimage">
                 <Link to={routes.ANALYSIS}><Button bsSize="large" bsStyle="success" block>Student Performance</Button></Link>
               </Col>           
             </Col>
-            <Col sm={2} md={4}>
 
+            <Col sm={2} md={3}>
               <MuiThemeProvider>
                 <br />
                 <br />
@@ -139,6 +167,7 @@ class ProfThing extends React.Component {
                       </Col>
                       <br />
                       <br />
+                      <br/>
                     </Card>
                   </Col>
                 </Row>
